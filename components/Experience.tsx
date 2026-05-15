@@ -81,7 +81,7 @@ function ExperienceCard({ exp, index }: { exp: typeof EXPERIENCES[0]; index: num
         backdropFilter: 'blur(20px)',
         position: 'relative', overflow: 'hidden',
         cursor: 'default', flexShrink: 0,
-      boxShadow: `0 4px 30px rgba(0,0,0,0.65), 0 1px 0 rgba(255,255,255,0.07) inset`,
+        boxShadow: `0 4px 30px rgba(0,0,0,0.65), 0 1px 0 rgba(255,255,255,0.07) inset`,
         transition: 'box-shadow 0.45s ease, transform 0.45s ease',
       }}
     >
@@ -100,63 +100,63 @@ function ExperienceCard({ exp, index }: { exp: typeof EXPERIENCES[0]; index: num
 
       {/* Big ID watermark */}
       <p style={{
-        fontFamily:"'Inter Tight',sans-serif", fontWeight:700,
-        fontSize:'4.5rem', lineHeight:1, letterSpacing:'-0.05em',
-        color:'rgba(255,255,255,0.04)', userSelect:'none',
-        position:'absolute', top:'1rem', right:'1.5rem',
+        fontFamily: "'Inter Tight',sans-serif", fontWeight: 700,
+        fontSize: '4.5rem', lineHeight: 1, letterSpacing: '-0.05em',
+        color: 'rgba(255,255,255,0.04)', userSelect: 'none',
+        position: 'absolute', top: '1rem', right: '1.5rem',
       }}>{exp.id}</p>
 
       {/* Content */}
-      <div style={{ position:'relative', zIndex:2 }}>
+      <div style={{ position: 'relative', zIndex: 2 }}>
         <p style={{
-          fontFamily:"'Inter Tight',sans-serif", fontWeight:200,
-          fontSize:'0.55rem', letterSpacing:'0.45em', color:exp.color,
-          textTransform:'uppercase', marginBottom:'0.8rem',
+          fontFamily: "'Inter Tight',sans-serif", fontWeight: 200,
+          fontSize: '0.55rem', letterSpacing: '0.45em', color: exp.color,
+          textTransform: 'uppercase', marginBottom: '0.8rem',
         }}>{exp.period} · {exp.location}</p>
 
         <h3 style={{
-          fontFamily:"'Inter Tight',sans-serif", fontWeight:700,
-          fontSize:'clamp(1rem,1.8vw,1.3rem)', letterSpacing:'-0.02em',
-          color:'rgba(255,255,255,0.92)', marginBottom:'0.3rem', lineHeight:1.2,
+          fontFamily: "'Inter Tight',sans-serif", fontWeight: 700,
+          fontSize: 'clamp(1rem,1.8vw,1.3rem)', letterSpacing: '-0.02em',
+          color: 'rgba(255,255,255,0.92)', marginBottom: '0.3rem', lineHeight: 1.2,
         }}>{exp.role}</h3>
 
         {exp.company && (
           <p style={{
-            fontFamily:"'Inter Tight',sans-serif", fontWeight:500,
-            fontSize:'0.72rem', letterSpacing:'0.06em',
-            color:'rgba(255,255,255,0.32)', marginBottom:'1.4rem',
+            fontFamily: "'Inter Tight',sans-serif", fontWeight: 500,
+            fontSize: '0.72rem', letterSpacing: '0.06em',
+            color: 'rgba(255,255,255,0.32)', marginBottom: '1.4rem',
           }}>{exp.company}</p>
         )}
 
         <ul style={{
-          listStyle:'none', margin:'0 0 1.6rem', padding:0,
-          display:'flex', flexDirection:'column', gap:'0.6rem',
+          listStyle: 'none', margin: '0 0 1.6rem', padding: 0,
+          display: 'flex', flexDirection: 'column', gap: '0.6rem',
         }}>
           {exp.bullets.map(b => (
             <li key={b} style={{
-              display:'flex', gap:'0.7rem', alignItems:'flex-start',
-              fontFamily:"'Inter Tight',sans-serif", fontWeight:300,
-              fontSize:'0.75rem', lineHeight:1.65, color:'rgba(255,255,255,0.5)',
+              display: 'flex', gap: '0.7rem', alignItems: 'flex-start',
+              fontFamily: "'Inter Tight',sans-serif", fontWeight: 300,
+              fontSize: '0.75rem', lineHeight: 1.65, color: 'rgba(255,255,255,0.5)',
             }}>
               <span style={{
-                width:4, height:4, borderRadius:'50%', background:exp.color,
-                flexShrink:0, marginTop:'0.45rem',
+                width: 4, height: 4, borderRadius: '50%', background: exp.color,
+                flexShrink: 0, marginTop: '0.45rem',
               }} />
               {b}
             </li>
           ))}
         </ul>
 
-        <div style={{ display:'flex', flexWrap:'wrap', gap:'0.45rem' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem' }}>
           {exp.tags.map(tag => (
             <span key={tag} style={{
-              padding:'0.28rem 0.75rem',
-              background:`${exp.color}12`,
-              border:`1px solid ${exp.color}28`,
-              borderRadius:'100px',
-              fontFamily:"'Inter Tight',sans-serif",
-              fontWeight:400, fontSize:'0.55rem', letterSpacing:'0.12em',
-              color:exp.color, textTransform:'uppercase',
+              padding: '0.28rem 0.75rem',
+              background: `${exp.color}12`,
+              border: `1px solid ${exp.color}28`,
+              borderRadius: '100px',
+              fontFamily: "'Inter Tight',sans-serif",
+              fontWeight: 400, fontSize: '0.55rem', letterSpacing: '0.12em',
+              color: exp.color, textTransform: 'uppercase',
             }}>{tag}</span>
           ))}
         </div>
@@ -171,7 +171,7 @@ const EDUCATION = [
     degree: 'Bachelor of Computer Applications (BCA)',
     school: 'Don Bosco Arts & Science College',
     location: 'Karaikal',
-    year: '2018 – 2020',
+    year: '2020 – 2023',
     icon: '🎓',
     color: '#3B82F6',
   },
@@ -179,18 +179,18 @@ const EDUCATION = [
     degree: 'Higher Secondary Certificate — Computer Science',
     school: "St. Mary's Higher Secondary School",
     location: 'Karaikal',
-    year: '2020 – 2023',
+    year: '2018 – 2020',
     icon: '📚',
     color: '#22D3EE',
   },
 ];
 
 export default function Experience() {
-  const trackRef   = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const track   = trackRef.current;
+    const track = trackRef.current;
     const section = sectionRef.current;
     if (!track || !section) return;
 
@@ -235,43 +235,43 @@ export default function Experience() {
         padding: 'clamp(5rem,10vh,8rem) clamp(1.5rem,8vw,8rem) 3rem',
       }}>
         <motion.p
-          initial={{ opacity:0, x:-30 }}
-          whileInView={{ opacity:1, x:0 }}
-          viewport={{ once:true }}
-          transition={{ duration:0.7 }}
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
           style={{
-            fontFamily:"'Inter Tight',sans-serif", fontWeight:200,
-            fontSize:'0.58rem', letterSpacing:'0.5em', textTransform:'uppercase',
-            color:'#22D3EE', marginBottom:'1rem',
+            fontFamily: "'Inter Tight',sans-serif", fontWeight: 200,
+            fontSize: '0.58rem', letterSpacing: '0.5em', textTransform: 'uppercase',
+            color: '#22D3EE', marginBottom: '1rem',
           }}
         >
           Work Experience
         </motion.p>
         <motion.h2
-          initial={{ opacity:0, y:30 }}
-          whileInView={{ opacity:1, y:0 }}
-          viewport={{ once:true }}
-          transition={{ duration:0.9, delay:0.1, ease:[0.16,1,0.3,1] }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           style={{
-            fontFamily:"'Inter Tight',sans-serif", fontWeight:800,
-            fontSize:'clamp(2.4rem,5vw,5rem)', letterSpacing:'-0.04em', lineHeight:0.9,
+            fontFamily: "'Inter Tight',sans-serif", fontWeight: 800,
+            fontSize: 'clamp(2.4rem,5vw,5rem)', letterSpacing: '-0.04em', lineHeight: 0.9,
           }}
         >
           <span style={{
-            background:'linear-gradient(135deg,#fff 0%,#d1d5db 50%,#fff 100%)',
-            WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent',
+            background: 'linear-gradient(135deg,#fff 0%,#d1d5db 50%,#fff 100%)',
+            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
           } as React.CSSProperties}>CAREER</span><br />
-          <span style={{ color:'rgba(255,255,255,0.15)', fontWeight:200 }}>TIMELINE</span>
+          <span style={{ color: 'rgba(255,255,255,0.15)', fontWeight: 200 }}>TIMELINE</span>
         </motion.h2>
         <motion.div
-          initial={{ scaleX:0 }}
-          whileInView={{ scaleX:1 }}
-          viewport={{ once:true }}
-          transition={{ duration:1.2, delay:0.3, ease:[0.16,1,0.3,1] }}
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           style={{
-            height:1, width:'100%', maxWidth:260,
-            background:'linear-gradient(90deg,#22D3EE,transparent)',
-            transformOrigin:'left', marginTop:'1.4rem',
+            height: 1, width: '100%', maxWidth: 260,
+            background: 'linear-gradient(90deg,#22D3EE,transparent)',
+            transformOrigin: 'left', marginTop: '1.4rem',
           }}
         />
       </div>
@@ -280,10 +280,10 @@ export default function Experience() {
       <div
         ref={trackRef}
         style={{
-          display:'flex', gap:'clamp(1.5rem,3vw,2.2rem)',
-          padding:'0 clamp(1.5rem,8vw,8rem) clamp(3rem,8vh,5rem)',
-          willChange:'transform',
-          alignItems:'flex-start',
+          display: 'flex', gap: 'clamp(1.5rem,3vw,2.2rem)',
+          padding: '0 clamp(1.5rem,8vw,8rem) clamp(3rem,8vh,5rem)',
+          willChange: 'transform',
+          alignItems: 'flex-start',
         }}
       >
         {EXPERIENCES.map((exp, i) => (
@@ -292,55 +292,55 @@ export default function Experience() {
 
         {/* Education column at the end */}
         <div style={{
-          minWidth:'clamp(280px,32vw,420px)', flexShrink:0,
-          display:'flex', flexDirection:'column', gap:'1rem',
+          minWidth: 'clamp(280px,32vw,420px)', flexShrink: 0,
+          display: 'flex', flexDirection: 'column', gap: '1rem',
         }}>
           <motion.p
-            initial={{ opacity:0 }}
-            whileInView={{ opacity:1 }}
-            viewport={{ once:true }}
-            transition={{ delay:0.3 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
             style={{
-              fontFamily:"'Inter Tight',sans-serif", fontWeight:200,
-              fontSize:'0.55rem', letterSpacing:'0.45em', textTransform:'uppercase',
-              color:'rgba(255,255,255,0.25)', marginBottom:'0.4rem',
+              fontFamily: "'Inter Tight',sans-serif", fontWeight: 200,
+              fontSize: '0.55rem', letterSpacing: '0.45em', textTransform: 'uppercase',
+              color: 'rgba(255,255,255,0.25)', marginBottom: '0.4rem',
             }}
           >Education</motion.p>
           {EDUCATION.map((edu, i) => (
             <motion.div
               key={edu.degree}
-              initial={{ opacity:0, y:30 }}
-              whileInView={{ opacity:1, y:0 }}
-              viewport={{ once:true }}
-              transition={{ duration:0.8, delay:i*0.15, ease:[0.16,1,0.3,1] }}
-              whileHover={{ y:-4, boxShadow:`0 0 30px ${edu.color}18` }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -4, boxShadow: `0 0 30px ${edu.color}18` }}
               style={{
-                background:'rgba(255,255,255,0.025)',
-                border:`1px solid ${edu.color}22`,
-                borderRadius:'16px',
-                padding:'1.6rem',
-                backdropFilter:'blur(16px)',
-                position:'relative', overflow:'hidden',
-                cursor:'default',
+                background: 'rgba(255,255,255,0.025)',
+                border: `1px solid ${edu.color}22`,
+                borderRadius: '16px',
+                padding: '1.6rem',
+                backdropFilter: 'blur(16px)',
+                position: 'relative', overflow: 'hidden',
+                cursor: 'default',
               }}
             >
               <div style={{
-                position:'absolute', top:0, left:'10%', right:'10%', height:1,
-                background:`linear-gradient(90deg,transparent,${edu.color}60,transparent)`,
+                position: 'absolute', top: 0, left: '10%', right: '10%', height: 1,
+                background: `linear-gradient(90deg,transparent,${edu.color}60,transparent)`,
               }} />
-              <span style={{ fontSize:'1.4rem', display:'block', marginBottom:'0.8rem' }}>{edu.icon}</span>
+              <span style={{ fontSize: '1.4rem', display: 'block', marginBottom: '0.8rem' }}>{edu.icon}</span>
               <p style={{
-                fontFamily:"'Inter Tight',sans-serif", fontWeight:600,
-                fontSize:'0.8rem', color:'rgba(255,255,255,0.85)', marginBottom:'0.35rem',
-                lineHeight:1.3,
+                fontFamily: "'Inter Tight',sans-serif", fontWeight: 600,
+                fontSize: '0.8rem', color: 'rgba(255,255,255,0.85)', marginBottom: '0.35rem',
+                lineHeight: 1.3,
               }}>{edu.degree}</p>
               <p style={{
-                fontFamily:"'Inter Tight',sans-serif", fontWeight:300,
-                fontSize:'0.68rem', color:'rgba(255,255,255,0.38)', marginBottom:'0.2rem',
+                fontFamily: "'Inter Tight',sans-serif", fontWeight: 300,
+                fontSize: '0.68rem', color: 'rgba(255,255,255,0.38)', marginBottom: '0.2rem',
               }}>{edu.school}</p>
               <p style={{
-                fontFamily:"'Inter Tight',sans-serif", fontWeight:200,
-                fontSize:'0.58rem', letterSpacing:'0.15em', color:edu.color,
+                fontFamily: "'Inter Tight',sans-serif", fontWeight: 200,
+                fontSize: '0.58rem', letterSpacing: '0.15em', color: edu.color,
               }}>{edu.year}</p>
             </motion.div>
           ))}
@@ -348,20 +348,20 @@ export default function Experience() {
 
         {/* End marker */}
         <motion.div
-          initial={{ opacity:0 }}
-          whileInView={{ opacity:1 }}
-          viewport={{ once:true }}
-          transition={{ delay:0.5 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
           style={{
-            minWidth:'20vw', display:'flex', alignItems:'center',
-            justifyContent:'center', flexShrink:0,
+            minWidth: '20vw', display: 'flex', alignItems: 'center',
+            justifyContent: 'center', flexShrink: 0,
           }}
         >
           <p style={{
-            fontFamily:"'Inter Tight',sans-serif", fontWeight:700,
-            fontSize:'clamp(2.5rem,5vw,6rem)', letterSpacing:'-0.05em',
-            color:'rgba(255,255,255,0.03)', textTransform:'uppercase',
-            textAlign:'center', lineHeight:0.9,
+            fontFamily: "'Inter Tight',sans-serif", fontWeight: 700,
+            fontSize: 'clamp(2.5rem,5vw,6rem)', letterSpacing: '-0.05em',
+            color: 'rgba(255,255,255,0.03)', textTransform: 'uppercase',
+            textAlign: 'center', lineHeight: 0.9,
           }}>MORE<br />TO<br />COME</p>
         </motion.div>
       </div>

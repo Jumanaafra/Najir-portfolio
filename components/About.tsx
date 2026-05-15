@@ -101,23 +101,22 @@ function RoleCard({ icon, title, desc, delay, color }: {
 }
 
 const ROLES = [
-  { icon: '⛓️', title: 'Supply Chain Management Supervisor',        desc: 'GRV & LPO processing, warehouse coordination, stock audits & FIFO rotation.',              delay: 0.10, color: '59,130,246' },
-  { icon: '📦', title: 'Inventory & Operations Coordinator',          desc: 'ERP & Excel reporting, purchase coordination, billing workflows, vendor tracking.',         delay: 0.20, color: '34,211,238' },
-  { icon: '💻', title: 'Web Developer & Digital Marketer',            desc: 'WordPress, Core Web Vitals, on-page SEO, Meta Ads & email campaigns.',                      delay: 0.30, color: '139,92,246' },
-  { icon: '📊', title: 'Data QC & Customer Support',                  desc: '99%+ data accuracy, VLOOKUP/XLOOKUP, Pivot Tables, SLA achievement, client POC.',          delay: 0.40, color: '16,185,129' },
+  { icon: '⛓️', title: 'Supply Chain Management Supervisor', desc: 'GRV & LPO processing, warehouse coordination, stock audits & FIFO rotation.', delay: 0.10, color: '59,130,246' },
+  { icon: '💻', title: 'Web Developer & Digital Marketer', desc: 'WordPress, Core Web Vitals, on-page SEO, Meta Ads & email campaigns.', delay: 0.20, color: '139,92,246' },
+  { icon: '📊', title: 'Data QC & Customer Support', desc: '99%+ data accuracy, VLOOKUP/XLOOKUP, Pivot Tables, SLA achievement, client POC.', delay: 0.30, color: '16,185,129' },
 ];
 
 const STATS = [
-  { value: 2,  suffix: '+', label: 'Years in UAE' },
-  { value: 5,  suffix: '+', label: 'Projects Built' },
-  { value: 5,  suffix: '',  label: 'Certifications' },
+  { value: 2, suffix: '+', label: 'Experience' },
+  { value: 5, suffix: '+', label: 'Projects Built' },
+  { value: 5, suffix: '', label: 'Certifications' },
   { value: 99, suffix: '%', label: 'Data Accuracy' },
 ];
 
 const STRENGTHS = [
-  'Attention to Detail','Fast Learner','Inventory Accuracy',
-  'Time Management','Multitasking','Team Coordination',
-  'Documentation','Problem Solving',
+  'Attention to Detail', 'Fast Learner', 'Inventory Accuracy',
+  'Time Management', 'Multitasking', 'Team Coordination',
+  'Documentation', 'Problem Solving',
 ];
 
 export default function About() {
@@ -169,63 +168,63 @@ export default function About() {
 
       {/* Floating blobs */}
       {[
-        { top:'8%', left:'4%', w:360, color:'59,130,246', d:9 },
-        { top:'60%', right:'4%', w:300, color:'139,92,246', d:11 },
+        { top: '8%', left: '4%', w: 360, color: '59,130,246', d: 9 },
+        { top: '60%', right: '4%', w: 300, color: '139,92,246', d: 11 },
       ].map((b, i) => (
         <motion.div key={i}
-          animate={{ scale:[1,1.15,1], opacity:[0.25,0.45,0.25] }}
-          transition={{ duration:b.d, repeat:Infinity, ease:'easeInOut', delay:i*2 }}
+          animate={{ scale: [1, 1.15, 1], opacity: [0.25, 0.45, 0.25] }}
+          transition={{ duration: b.d, repeat: Infinity, ease: 'easeInOut', delay: i * 2 }}
           style={{
-            position:'absolute', top:b.top, left:(b as any).left, right:(b as any).right,
-            width:b.w, height:b.w, borderRadius:'50%',
-            background:`radial-gradient(circle,rgba(${b.color},0.07),transparent 70%)`,
-            filter:'blur(40px)', pointerEvents:'none', zIndex:0,
+            position: 'absolute', top: b.top, left: (b as any).left, right: (b as any).right,
+            width: b.w, height: b.w, borderRadius: '50%',
+            background: `radial-gradient(circle,rgba(${b.color},0.07),transparent 70%)`,
+            filter: 'blur(40px)', pointerEvents: 'none', zIndex: 0,
           }}
         />
       ))}
 
-      <div style={{ position:'relative', zIndex:2, width:'100%', maxWidth:1280, margin:'0 auto' }}>
+      <div style={{ position: 'relative', zIndex: 2, width: '100%', maxWidth: 1280, margin: '0 auto' }}>
         {/* ── Top grid ─────────────────────────────────────────────── */}
-        <div className="about-grid" style={{ marginBottom:'clamp(3rem,6vh,4.5rem)' }}>
+        <div className="about-grid" style={{ marginBottom: 'clamp(3rem,6vh,4.5rem)' }}>
 
           {/* LEFT */}
           <div>
             <motion.p
-              initial={{ opacity:0, x:-30 }} whileInView={{ opacity:1, x:0 }}
-              viewport={{ once:true }} transition={{ duration:0.7 }}
+              initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }} transition={{ duration: 0.7 }}
               style={{
-                fontFamily:"'Inter Tight',sans-serif", fontWeight:200,
-                fontSize:'0.58rem', letterSpacing:'0.5em', textTransform:'uppercase',
-                color:'#3B82F6', marginBottom:'1.4rem',
+                fontFamily: "'Inter Tight',sans-serif", fontWeight: 200,
+                fontSize: '0.58rem', letterSpacing: '0.5em', textTransform: 'uppercase',
+                color: '#3B82F6', marginBottom: '1.4rem',
               }}
             >About Me</motion.p>
 
             <motion.h2
-              initial={{ opacity:0, y:40, filter:'blur(10px)' }}
-              whileInView={{ opacity:1, y:0, filter:'blur(0px)' }}
-              viewport={{ once:true }}
-              transition={{ duration:1, delay:0.1, ease:[0.16,1,0.3,1] }}
+              initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               style={{
-                fontFamily:"'Inter Tight',sans-serif", fontWeight:800,
-                fontSize:'clamp(2.6rem,5.5vw,5.5rem)',
-                lineHeight:0.88, letterSpacing:'-0.04em', marginBottom:'1.8rem',
+                fontFamily: "'Inter Tight',sans-serif", fontWeight: 800,
+                fontSize: 'clamp(2.6rem,5.5vw,5.5rem)',
+                lineHeight: 0.88, letterSpacing: '-0.04em', marginBottom: '1.8rem',
               }}
             >
               <span style={{
-                background:'linear-gradient(135deg,#fff 0%,#d1d5db 50%,#fff 100%)',
-                WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent',
+                background: 'linear-gradient(135deg,#fff 0%,#d1d5db 50%,#fff 100%)',
+                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
               } as React.CSSProperties}>MOHAMED</span><br />
-              <span style={{ color:'rgba(255,255,255,0.22)', fontWeight:200 }}>NAZEER</span>
+              <span style={{ color: 'rgba(255,255,255,0.22)', fontWeight: 200 }}>NAZEER</span>
             </motion.h2>
 
             <motion.p
-              initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }}
-              viewport={{ once:true }}
-              transition={{ duration:0.9, delay:0.25, ease:[0.16,1,0.3,1] }}
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
               style={{
-                fontFamily:"'Inter Tight',sans-serif", fontWeight:300,
-                fontSize:'clamp(0.82rem,1.1vw,0.95rem)', lineHeight:1.88,
-                color:'rgba(255,255,255,0.55)', maxWidth:'44ch', marginBottom:'2.5rem',
+                fontFamily: "'Inter Tight',sans-serif", fontWeight: 300,
+                fontSize: 'clamp(0.82rem,1.1vw,0.95rem)', lineHeight: 1.88,
+                color: 'rgba(255,255,255,0.55)', maxWidth: '44ch', marginBottom: '2.5rem',
               }}
             >
               Detail-oriented professional with hands-on experience in Supply Chain Management,
@@ -234,27 +233,27 @@ export default function About() {
             </motion.p>
 
             {/* Stats */}
-            <div style={{ display:'flex', gap:'clamp(1.5rem,4vw,3.5rem)', flexWrap:'wrap', marginBottom:'clamp(2.5rem,5vh,3.5rem)' }}>
+            <div style={{ display: 'flex', gap: 'clamp(1.5rem,4vw,3.5rem)', flexWrap: 'wrap', marginBottom: 'clamp(2.5rem,5vh,3.5rem)' }}>
               {STATS.map(({ value, suffix, label }, i) => (
                 <motion.div key={label}
-                  initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }}
-                  viewport={{ once:true }}
-                  transition={{ duration:0.7, delay:0.3 + i*0.08 }}
+                  initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, delay: 0.3 + i * 0.08 }}
                 >
                   <p style={{
-                    fontFamily:"'Inter Tight',sans-serif", fontWeight:800,
-                    fontSize:'clamp(1.9rem,3.2vw,3rem)',
-                    letterSpacing:'-0.04em', lineHeight:1,
-                    background:'linear-gradient(135deg,#fff 0%,#9ca3af 100%)',
-                    WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent',
+                    fontFamily: "'Inter Tight',sans-serif", fontWeight: 800,
+                    fontSize: 'clamp(1.9rem,3.2vw,3rem)',
+                    letterSpacing: '-0.04em', lineHeight: 1,
+                    background: 'linear-gradient(135deg,#fff 0%,#9ca3af 100%)',
+                    WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
                   } as React.CSSProperties}>
                     <Counter to={value} suffix={suffix} />
                   </p>
                   <p style={{
-                    fontFamily:"'Inter Tight',sans-serif", fontWeight:300,
-                    fontSize:'0.58rem', letterSpacing:'0.22em',
-                    color:'rgba(255,255,255,0.35)', textTransform:'uppercase',
-                    marginTop:'0.3rem',
+                    fontFamily: "'Inter Tight',sans-serif", fontWeight: 300,
+                    fontSize: '0.58rem', letterSpacing: '0.22em',
+                    color: 'rgba(255,255,255,0.35)', textTransform: 'uppercase',
+                    marginTop: '0.3rem',
                   }}>{label}</p>
                 </motion.div>
               ))}
@@ -269,10 +268,10 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ 
-                scale: 1.02, 
+              whileHover={{
+                scale: 1.02,
                 y: -2,
-                boxShadow: '0 8px 30px rgba(59,130,246,0.25), 0 0 0 1px rgba(255,255,255,0.15) inset' 
+                boxShadow: '0 8px 30px rgba(59,130,246,0.25), 0 0 0 1px rgba(255,255,255,0.15) inset'
               }}
               whileTap={{ scale: 0.98 }}
               className="group flex sm:inline-flex items-center justify-center gap-2 rounded-full backdrop-blur-xl border border-white/10 w-full sm:w-max relative overflow-hidden"
@@ -316,40 +315,40 @@ export default function About() {
           </div>
 
           {/* RIGHT: role cards */}
-          <div style={{ display:'flex', flexDirection:'column', gap:'0.9rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
             {ROLES.map(card => <RoleCard key={card.title} {...card} />)}
           </div>
         </div>
 
         {/* ── Strengths ─────────────────────────────────────────────── */}
         <motion.div
-          initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }}
-          viewport={{ once:true }} transition={{ duration:0.8, delay:0.15 }}
-          style={{ marginBottom:'1.6rem' }}
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.15 }}
+          style={{ marginBottom: '1.6rem' }}
         >
           <p style={{
-            fontFamily:"'Inter Tight',sans-serif", fontWeight:200,
-            fontSize:'0.55rem', letterSpacing:'0.45em', textTransform:'uppercase',
-            color:'rgba(255,255,255,0.28)', marginBottom:'1rem',
+            fontFamily: "'Inter Tight',sans-serif", fontWeight: 200,
+            fontSize: '0.55rem', letterSpacing: '0.45em', textTransform: 'uppercase',
+            color: 'rgba(255,255,255,0.28)', marginBottom: '1rem',
           }}>Core Strengths</p>
-          <div style={{ display:'flex', flexWrap:'wrap', gap:'0.5rem' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
             {STRENGTHS.map((s, i) => (
               <motion.span key={s}
-                initial={{ opacity:0, scale:0.85 }}
-                whileInView={{ opacity:1, scale:1 }}
-                viewport={{ once:true }}
-                transition={{ duration:0.45, delay:i*0.06 }}
-                whileHover={{ scale:1.05 }}
+                initial={{ opacity: 0, scale: 0.85 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: i * 0.06 }}
+                whileHover={{ scale: 1.05 }}
                 style={{
-                  display:'inline-block', padding:'0.35rem 0.9rem',
-                  background:'rgba(255,255,255,0.05)',
-                  border:'1px solid rgba(255,255,255,0.1)',
-                  borderRadius:'100px',
-                  fontFamily:"'Inter Tight',sans-serif",
-                  fontWeight:400, fontSize:'0.6rem', letterSpacing:'0.1em',
-                  color:'rgba(255,255,255,0.65)', textTransform:'uppercase',
-                  cursor:'default',
-                  boxShadow:'0 1px 0 rgba(255,255,255,0.07) inset',
+                  display: 'inline-block', padding: '0.35rem 0.9rem',
+                  background: 'rgba(255,255,255,0.05)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  borderRadius: '100px',
+                  fontFamily: "'Inter Tight',sans-serif",
+                  fontWeight: 400, fontSize: '0.6rem', letterSpacing: '0.1em',
+                  color: 'rgba(255,255,255,0.65)', textTransform: 'uppercase',
+                  cursor: 'default',
+                  boxShadow: '0 1px 0 rgba(255,255,255,0.07) inset',
                 }}
               >{s}</motion.span>
             ))}
@@ -357,49 +356,49 @@ export default function About() {
         </motion.div>
 
         {/* ── Language + Availability ───────────────────────────────── */}
-        <div style={{ display:'flex', flexWrap:'wrap', gap:'1rem' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
           {[
             {
-              icon:'🌐', label:'Languages', value:'English · Tamil · Hindi',
-              bg:'rgba(255,255,255,0.03)', border:'rgba(255,255,255,0.08)', glow:false,
+              icon: '🌐', label: 'Languages', value: 'English · Tamil · Hindi',
+              bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.08)', glow: false,
             },
             {
-              icon:'⚡', label:'Availability', value:'Immediate Joiner · Willing to Relocate within UAE',
-              bg:'rgba(59,130,246,0.06)', border:'rgba(59,130,246,0.2)', glow:true,
+              icon: '⚡', label: 'Availability', value: 'Immediate Joiner · Willing to Relocate within UAE',
+              bg: 'rgba(59,130,246,0.06)', border: 'rgba(59,130,246,0.2)', glow: true,
             },
           ].map(item => (
             <motion.div key={item.label}
-              initial={{ opacity:0, x:-20 }} whileInView={{ opacity:1, x:0 }}
-              viewport={{ once:true }} transition={{ duration:0.7, delay:0.3 }}
+              initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.3 }}
               style={{
-                padding:'1rem 1.5rem',
-                background:item.bg,
-                border:`1px solid ${item.border}`,
-                borderRadius:'14px', display:'flex', gap:'0.9rem', alignItems:'center',
-                boxShadow:'0 4px 20px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.06) inset',
+                padding: '1rem 1.5rem',
+                background: item.bg,
+                border: `1px solid ${item.border}`,
+                borderRadius: '14px', display: 'flex', gap: '0.9rem', alignItems: 'center',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.06) inset',
               }}
             >
               {item.glow && (
                 <motion.span
-                  animate={{ opacity:[1,0.3,1] }}
-                  transition={{ duration:2, repeat:Infinity }}
+                  animate={{ opacity: [1, 0.3, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
                   style={{
-                    width:7, height:7, borderRadius:'50%',
-                    background:'#22D3EE', boxShadow:'0 0 10px #22D3EE',
-                    display:'block', flexShrink:0,
+                    width: 7, height: 7, borderRadius: '50%',
+                    background: '#22D3EE', boxShadow: '0 0 10px #22D3EE',
+                    display: 'block', flexShrink: 0,
                   }}
                 />
               )}
-              {!item.glow && <span style={{ fontSize:'1.1rem', flexShrink:0 }}>{item.icon}</span>}
+              {!item.glow && <span style={{ fontSize: '1.1rem', flexShrink: 0 }}>{item.icon}</span>}
               <div>
                 <p style={{
-                  fontFamily:"'Inter Tight',sans-serif", fontWeight:200,
-                  fontSize:'0.5rem', letterSpacing:'0.35em', textTransform:'uppercase',
-                  color:'rgba(255,255,255,0.28)', marginBottom:'0.2rem',
+                  fontFamily: "'Inter Tight',sans-serif", fontWeight: 200,
+                  fontSize: '0.5rem', letterSpacing: '0.35em', textTransform: 'uppercase',
+                  color: 'rgba(255,255,255,0.28)', marginBottom: '0.2rem',
                 }}>{item.label}</p>
                 <p style={{
-                  fontFamily:"'Inter Tight',sans-serif", fontWeight:400,
-                  fontSize:'0.76rem', color:'rgba(255,255,255,0.72)',
+                  fontFamily: "'Inter Tight',sans-serif", fontWeight: 400,
+                  fontSize: '0.76rem', color: 'rgba(255,255,255,0.72)',
                 }}>{item.value}</p>
               </div>
             </motion.div>

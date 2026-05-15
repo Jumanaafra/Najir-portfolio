@@ -134,7 +134,7 @@ function CardContent({ p, isActive }: { p: typeof PROJECTS[0]; isActive: boolean
       }}>{p.id}</p>
 
       {/* Emoji + stat badge */}
-      <div style={{ position: 'absolute', top: 'clamp(1.4rem,3vw,2rem)', left: 'clamp(1.4rem,3vw,2.2rem)' }}>
+      <div style={{ position: 'relative', zIndex: 2, marginBottom: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
         <span style={{
           fontSize: 'clamp(1.5rem,2.5vw,2.2rem)', display: 'block', marginBottom: '0.45rem',
         }}>{p.emoji}</span>
@@ -148,7 +148,7 @@ function CardContent({ p, isActive }: { p: typeof PROJECTS[0]; isActive: boolean
       </div>
 
       {/* Main content — anchored to bottom */}
-      <div style={{ position: 'relative', zIndex: 2, marginTop: 'auto' }}>
+      <div style={{ position: 'relative', zIndex: 2, marginTop: '1.5rem', display: 'flex', flexDirection: 'column' }}>
         {/* Subtitle */}
         <p style={{
           fontFamily: "'Inter Tight',sans-serif", fontWeight: 200,

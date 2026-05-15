@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const CONTACT_INFO = [
   {
@@ -30,11 +30,8 @@ const CONTACT_INFO = [
   },
 ];
 
-type FormState = 'idle' | 'sending' | 'sent' | 'error';
-
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
-  const [state, setState] = useState<FormState>('idle');
   const [focused, setFocused] = useState<string | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -42,14 +39,8 @@ export default function Contact() {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setState('sending');
-    // Replace with real API call (e.g. Formspree / Resend)
-    await new Promise(r => setTimeout(r, 1800));
-    setState('sent');
-    setForm({ name: '', email: '', subject: '', message: '' });
-    setTimeout(() => setState('idle'), 4500);
   };
 
   const inputBase: React.CSSProperties = {
@@ -251,41 +242,10 @@ export default function Contact() {
               background:'linear-gradient(90deg,transparent,rgba(59,130,246,0.55),transparent)',
             }} />
 
-            <AnimatePresence mode="wait">
-              {state === 'sent' ? (
-                <motion.div
-                  key="success"
-                  initial={{ opacity:0, scale:0.9 }}
-                  animate={{ opacity:1, scale:1 }}
-                  exit={{ opacity:0 }}
-                  style={{
-                    display:'flex', flexDirection:'column', alignItems:'center',
-                    justifyContent:'center', minHeight:300, gap:'1.5rem', textAlign:'center',
-                  }}
-                >
-                  <motion.div
-                    animate={{ scale:[1,1.2,1], rotate:[0,10,-10,0] }}
-                    transition={{ duration:0.6 }}
-                    style={{ fontSize:'3rem' }}
-                  >✅</motion.div>
-                  <p style={{
-                    fontFamily:"'Inter Tight',sans-serif", fontWeight:600,
-                    fontSize:'1.05rem', color:'rgba(255,255,255,0.85)',
-                  }}>Message Sent!</p>
-                  <p style={{
-                    fontFamily:"'Inter Tight',sans-serif", fontWeight:300,
-                    fontSize:'0.78rem', color:'rgba(255,255,255,0.38)',
-                  }}>I&apos;ll get back to you soon.</p>
-                </motion.div>
-              ) : (
-                <motion.form
-                  key="form"
-                  initial={{ opacity:0 }}
-                  animate={{ opacity:1 }}
-                  exit={{ opacity:0 }}
-                  onSubmit={handleSubmit}
-                  style={{ display:'flex', flexDirection:'column', gap:'1.2rem' }}
-                >
+            <form
+              onSubmit={handleSubmit}
+              style={{ display:'flex', flexDirection:'column', gap:'1.2rem' }}
+            >
                   <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1rem' }} className="form-row">
                     <div>
                       <label htmlFor="contact-name" style={labelStyle}>Name</label>
@@ -330,43 +290,20 @@ export default function Contact() {
                   {/* Send button */}
                   <motion.button
                     type="submit"
-                    disabled={state==='sending'}
-                    whileHover={state!=='sending' ? { y:-2, scale:1.03 } : {}}
-                    whileTap={state!=='sending' ? { scale:0.97 } : {}}
+                    whileHover={{ y:-2, scale:1.03 }}
+                    whileTap={{ scale:0.97 }}
                     className="btn-silver"
                     style={{
                       width:'100%', justifyContent:'center',
                       padding:'1.05rem 2rem',
                       borderRadius:'12px',
                       fontSize:'0.72rem',
-                      opacity: state==='sending' ? 0.7 : 1,
-                      cursor: state==='sending' ? 'default' : 'pointer',
+                      cursor: 'pointer',
                     }}
                   >
-                    {state==='sending' ? (
-                      <>
-                        <motion.div
-                          animate={{ rotate:360 }}
-                          transition={{ repeat:Infinity, duration:1, ease:'linear' }}
-                          style={{
-                            width:13, height:13, borderRadius:'50%',
-                            border:'1.5px solid transparent', borderTopColor:'rgba(255,255,255,0.6)',
-                          }}
-                        />
-                        Transmitting…
-                      </>
-                    ) : (
-                      <>
-                        Send Message
-                        <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-                          <path d="M1 6.5h11M7.5 2.5l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </>
-                    )}
+                    SEND MESSAGE &rarr;
                   </motion.button>
-                </motion.form>
-              )}
-            </AnimatePresence>
+            </form>
           </motion.div>
         </div>
       </div>

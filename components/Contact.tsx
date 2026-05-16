@@ -1,7 +1,8 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 
 const CONTACT_INFO = [
   {
@@ -30,17 +31,62 @@ const CONTACT_INFO = [
   },
 ];
 
+type ToastState = { type: 'success' | 'error'; message: string } | null;
+
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
   const [focused, setFocused] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState<ToastState>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const showToast = (type: 'success' | 'error', message: string) => {
+    setToast({ type, message });
+    setTimeout(() => setToast(null), 5000);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const serviceId  = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey  = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    // Guard: alert developer if keys are still placeholder values
+    if (!serviceId || !templateId || !publicKey ||
+        serviceId === 'your_service_id' ||
+        templateId === 'your_template_id' ||
+        publicKey === 'your_public_key') {
+      showToast('error', 'Email service not configured yet. Please contact me directly.');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          subject: form.subject,
+          message: form.message,
+          reply_to: form.email,
+        },
+        publicKey
+      );
+      showToast('success', "Message sent! I'll get back to you soon.");
+      setForm({ name: '', email: '', subject: '', message: '' });
+    } catch {
+      showToast('error', 'Something went wrong. Please try again or email me directly.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const inputBase: React.CSSProperties = {
@@ -58,7 +104,7 @@ export default function Contact() {
   };
 
   const inputFocused: React.CSSProperties = {
-    borderColor: 'rgba(59,130,246,0.55)',
+    border: '1px solid rgba(59,130,246,0.55)',
     boxShadow: '0 0 20px rgba(59,130,246,0.08)',
     background: 'rgba(59,130,246,0.04)',
   };
@@ -80,6 +126,58 @@ export default function Contact() {
         overflow: 'hidden',
       }}
     >
+      {/* Toast Notification */}
+      <AnimatePresence>
+        {toast && (
+          <motion.div
+            key="toast"
+            initial={{ opacity: 0, y: -24, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -16, scale: 0.96 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            style={{
+              position: 'fixed',
+              top: '1.5rem',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              zIndex: 9999,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem',
+              padding: '0.9rem 1.5rem',
+              borderRadius: '14px',
+              backdropFilter: 'blur(20px) saturate(1.5)',
+              background: toast.type === 'success'
+                ? 'rgba(34,197,94,0.12)'
+                : 'rgba(239,68,68,0.12)',
+              border: `1px solid ${
+                toast.type === 'success'
+                  ? 'rgba(34,197,94,0.3)'
+                  : 'rgba(239,68,68,0.3)'
+              }`,
+              boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+              maxWidth: '90vw',
+              pointerEvents: 'none',
+            }}
+          >
+            <span style={{ fontSize: '1rem' }}>
+              {toast.type === 'success' ? '✅' : '❌'}
+            </span>
+            <p style={{
+              fontFamily: "'Inter Tight',sans-serif",
+              fontWeight: 400,
+              fontSize: '0.78rem',
+              color: toast.type === 'success'
+                ? 'rgba(134,239,172,0.9)'
+                : 'rgba(252,165,165,0.9)',
+              margin: 0,
+              letterSpacing: '0.02em',
+            }}>
+              {toast.message}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* Ambient blobs */}
       <div style={{
         position:'absolute', top:'18%', left:'-10%', width:480, height:480,
@@ -243,6 +341,7 @@ export default function Contact() {
             }} />
 
             <form
+              ref={formRef}
               onSubmit={handleSubmit}
               style={{ display:'flex', flexDirection:'column', gap:'1.2rem' }}
             >
@@ -290,18 +389,21 @@ export default function Contact() {
                   {/* Send button */}
                   <motion.button
                     type="submit"
-                    whileHover={{ y:-2, scale:1.03 }}
-                    whileTap={{ scale:0.97 }}
+                    disabled={loading}
+                    whileHover={loading ? {} : { y:-2, scale:1.03 }}
+                    whileTap={loading ? {} : { scale:0.97 }}
                     className="btn-silver"
                     style={{
                       width:'100%', justifyContent:'center',
                       padding:'1.05rem 2rem',
                       borderRadius:'12px',
                       fontSize:'0.72rem',
-                      cursor: 'pointer',
+                      cursor: loading ? 'not-allowed' : 'pointer',
+                      opacity: loading ? 0.65 : 1,
+                      transition: 'opacity 0.3s ease',
                     }}
                   >
-                    SEND MESSAGE &rarr;
+                    {loading ? 'SENDING…' : <>SEND MESSAGE &rarr;</>}
                   </motion.button>
             </form>
           </motion.div>
